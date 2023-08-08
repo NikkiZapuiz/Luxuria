@@ -33,7 +33,7 @@ function LoginAsUser(props) {
             }}>
                 <div className="col-md-6 left-box p-3 d-flex justify-content-center">
                     <div className="logo-container">
-                        <img src="/public/SyncedCloud-n-removebg-preview.png" alt="logo" style={{ width: "100%", maxWidth: "400px", marginTop: "17vh" }} />
+                        <img src="/SyncedCloud-n-removebg-preview.png" alt="logo" style={{ width: "100%", maxWidth: "400px", marginTop: "17vh" }} />
                     </div>
                 </div>
                 <div className="col-md-6 right-box d-flex justify-content-center" style={{
