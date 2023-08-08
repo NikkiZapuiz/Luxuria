@@ -1,0 +1,21 @@
+.date-pax-selector {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+label {
+    font-weight: 600px;
+    margin-right: 5px;
+}
+
+.col-md-4 input,
+.col-md-5 input,
+.room-type {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 35px;
+    max-width: 100px;
+}

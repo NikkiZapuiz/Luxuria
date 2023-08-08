@@ -26,6 +26,12 @@ function LoginAsUser(props) {
             <div className="row p-3" style={{
                 maxWidth: "1000px",
                 margin: "auto",
+                // backgroundColor: "rgba(255, 255, 255, 0.15)",
+                // backdropFilter: "blur(1px)",
+                // borderRadius: "10px",
+                // boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
+                // border: "1px solid rgba(255, 255, 255, 0.2)",
+                // height: "55vh",
 
                 borderRadius: "10px",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
@@ -37,14 +43,9 @@ function LoginAsUser(props) {
                     </div>
                 </div>
                 <div className="col-md-6 right-box d-flex justify-content-center" style={{
-                    // backgroundColor: "rgba(255, 255, 255, 0.15)",
-                    backdropFilter: "blur(1px)",
-                    borderRadius: "10px",
-                    // boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    height: "55vh"
+
                 }}>
-                    <div className="auth-form-container" style={{marginTop: "2vh"}}>
+                    <div className="auth-form-container" style={{ marginTop: "2vh" }}>
                         {/* <h2 className="login-color">Sign In</h2> */}
                         <div className="toggle-container">
                             <label htmlFor="loginSwitch">
