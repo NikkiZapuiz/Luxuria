@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -11,7 +12,7 @@ function Navbar() {
                 borderBottomColor: "#ccc"
             }}>
             <div className="container-fluid">
-            <img src="/SyncedCloud-n-removebg-preview.png" alt="logo" style={{ width: "10%", minWidth: "200px" }} />
+            <img src="/logo.png" alt="logo" style={{ width: "10%", minWidth: "200px" }} />
                 <button
                     className="navbar-toggler btn btn-outline-light"
                     type="button"
@@ -30,7 +31,7 @@ function Navbar() {
                             <a
                                 className="nav-link dropdown-toggle"
                                 href="#"
-                                style={{ color: "black" }}
+                                style={{ color: "white" }}
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
@@ -57,12 +58,9 @@ function Navbar() {
                             Search
                         </button>
                     </form>
-                    <a href="#" style={{ textDecoration: "none", color: "black", marginRight: "10px" }}>
-                        Sign Up
-                    </a>
-                    <a href="#" style={{ textDecoration: "none", color: "black", marginRight: "10px" }}>
-                        Login
-                    </a>
+                    <Link to="/login" style={{ textDecoration: "none", color: "black", marginRight: "10px" }}>
+                        Log In
+                    </Link>
                 </div>
             </div>
         </nav>

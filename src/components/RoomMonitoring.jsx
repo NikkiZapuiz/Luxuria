@@ -1,6 +1,6 @@
+import React from 'react';
 
-
-const RoomMonitoring = ({ rooms }) => {
+function RoomMonitoring({ rooms }) {
     const renderCell = (room) => {
         return (
             <div
@@ -14,7 +14,7 @@ const RoomMonitoring = ({ rooms }) => {
                     justifyContent: "center",
                     fontSize: "18px",
                     fontWeight: "bold",
-                    backgroundColor: room.availability ? "#94bbe9" : "red",
+                    backgroundColor: room.availability ? "#293D76" : "#D02F23",
                 }}
             >
                 {room.roomNumber}
@@ -31,6 +31,6 @@ const RoomMonitoring = ({ rooms }) => {
             </div>
         </div>
     );
-};
+}
 
 export default RoomMonitoring;

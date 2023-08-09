@@ -56,7 +56,7 @@ const DateAndPaxSelector = () => {
                         min="0"
                         max="10"
                     />
-                    <button className='btn btn-secondary ms-4 w-25'>Go</button>
+                    <button className='btn ms-4' style={{backgroundColor: "#293D76", color: "white"}}>Go</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import RoomMonitoring from "../components/RoomMonitoring";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AdminDashboard() {
     useEffect(() => {
@@ -31,29 +32,9 @@ function AdminDashboard() {
     const rooms = generateRooms(totalRooms);
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6 mb-4">
-                    <div className="mb-4">
-                        <h4>Customer information</h4>
-                    </div>
-                    <div>
-                        <p>Booking Number:</p>
-                        <p>Room Number:</p>
-                        <p>Guest Name:</p>
-                        <p>email address:</p>
-                        <p>Contact Number:</p>
-                        <p>Stay duration:</p>
-                        <p>Check-in date:</p>
-                        <p>Check-out date</p>
-                    </div>
-                    <br />
-                    <button className="btn btn-light">Check-in</button>
-                    <button className="btn btn-light ms-2">Check-out</button>
-                </div>
-                <div className="col-md-6 mt-2" style={{ color: "white" }}>
-                    <RoomMonitoring rooms={rooms} />
-                </div>
+        <div className="container">
+            <div className="d-flex justify-content-center p-5" style={{ color: "white" }}>
+                <RoomMonitoring rooms={rooms} />
             </div>
         </div>
     );

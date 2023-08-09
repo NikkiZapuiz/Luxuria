@@ -1,10 +1,11 @@
-import DateAndPaxSelector from "../components/DatePaxSelector";
+
+import RoomDisplay from "../components/RoomDisplay";
 import '../css/DateAndPaxSelector.css'
 
 function HomePage() {
     return (
         <>
-            <DateAndPaxSelector />
+            <RoomDisplay />
         
         </>
     )

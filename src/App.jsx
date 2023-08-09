@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/Homepage";
 
+
 function App() {
 
     return (
@@ -20,7 +21,7 @@ function App() {
                     
 
                 } />
-                {/* <Route path="/" element={<Login />} /> */}
+                <Route path="/login" element={<Login />} />
                 <Route path="/admin-dashboard" element={
                 <>
                     <Nav />
@@ -28,7 +29,7 @@ function App() {
                 </>
                 } />
             </Routes>
-        </BrowserRouter>
+        </BrowserRouter>    
     );
 }
 

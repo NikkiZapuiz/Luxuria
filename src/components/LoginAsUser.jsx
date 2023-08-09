@@ -22,101 +22,100 @@ function LoginAsUser(props) {
     };
 
     return (
-        <div className="main container d-flex justify-content-center align-items-center">
-            <div className="row p-3" style={{
+        <>
+            <div className="d-flex justify-content-center pb-5" style={{
                 maxWidth: "1000px",
                 margin: "auto",
-                // backgroundColor: "rgba(255, 255, 255, 0.15)",
-                // backdropFilter: "blur(1px)",
-                // borderRadius: "10px",
-                // boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
-                // border: "1px solid rgba(255, 255, 255, 0.2)",
-                // height: "55vh",
-
                 borderRadius: "10px",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
                 border: "1px solid rgba(255, 255, 255, 0.2)"
             }}>
-                <div className="col-md-6 left-box p-3 d-flex justify-content-center">
-                    <div className="logo-container">
-                        <img src="/log-removebg-preview.png" alt="logo" style={{ width: "100%", maxWidth: "400px", marginTop: "17vh" }} />
+                <div className="auth-form-container" style={{ marginTop: "2vh" }}>
+                    <img src="/logo.png" alt="logo" style={{ width: "50%", minWidth: "200px", marginTop: "5vh" }} />
+                    <div className="toggle-container">
+                        <label htmlFor="loginSwitch">
+                            <Switch
+                                id="loginSwitch"
+                                onChange={handleOptionChange}
+                                checked={loginOption === "admin"}
+                                offColor="#adb5bd"
+                                onColor="#adb5bd"
+                                offHandleColor="#f8f9fa"
+                                onHandleColor="#f8f9fa"
+                                handleDiameter={22}
+                                uncheckedIcon={false}
+                                checkedIcon={false}
+                                height={24}
+                                width={48}
+                            />
+                        </label>
+                        <span style={{ color: "#293D76", marginLeft: "10px" }}>
+                            {loginOption === "admin" ? "Login as Admin" : "Login as Guest"}
+                        </span>
                     </div>
-                </div>
-                <div className="col-md-6 right-box d-flex justify-content-center" style={{
-
-                }}>
-                    <div className="auth-form-container" style={{ marginTop: "2vh" }}>
-                        {/* <h2 className="login-color">Sign In</h2> */}
-                        <div className="toggle-container">
-                            <label htmlFor="loginSwitch">
-                                <Switch
-                                    id="loginSwitch"
-                                    onChange={handleOptionChange}
-                                    checked={loginOption === "admin"}
-                                    offColor="#adb5bd"
-                                    onColor="#adb5bd"
-                                    offHandleColor="#f8f9fa"
-                                    onHandleColor="#f8f9fa"
-                                    handleDiameter={22}
-                                    uncheckedIcon={false}
-                                    checkedIcon={false}
-                                    height={24}
-                                    width={48}
-                                />
-                            </label>
-                            <span style={{ color: "white", marginLeft: "10px" }}>
-                                {loginOption === "admin" ? "Login as Admin" : "Login as Guest"}
+                    <br />
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <label style={{ color: "#293D76" }} htmlFor="email">Email</label>
+                        <div>
+                            <input
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                placeholder="email"
+                                id="email"
+                                name="email"
+                                style={{
+                                    width: "50%",
+                                    height: "40px",
+                                    color: "#293D76",
+                                    border: "1px solid #293D76",
+                                    borderRadius: "5px",
+                                    paddingLeft: "10px",
+                                }}
+                                required
+                            />
+                        </div>
+                        <label style={{ color: "#293D76" }} htmlFor="password">Password</label>
+                        <div style={{ position: "relative" }}>
+                            <input
+                                value={pass}
+                                onChange={(e) => setPass(e.target.value)}
+                                type={showPassword ? "text" : "password"}
+                                placeholder="********"
+                                id="password"
+                                name="password"
+                                style={{
+                                    width: "50%",
+                                    height: "40px",
+                                    color: "#293D76",
+                                    border: "1px solid #293D76",
+                                    borderRadius: "5px",
+                                    paddingLeft: "10px",
+                                }}
+                                required
+                            />
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    right: "27%",
+                                    transform: "translateY(-50%)",
+                                    cursor: "pointer",
+                                    color: "#293D76",
+                                }}
+                                onClick={toggleShowPassword}
+                            >
+                                {showPassword ? <i className="fas fa-eye"></i> : <i className="fas fa-eye-slash"></i>}
                             </span>
                         </div>
-                        <br />
-                        <form className="login-form" onSubmit={handleSubmit}>
-                            <label htmlFor="email">Email</label>
-                            <div>
-                                <input
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    type="email"
-                                    placeholder="youremail@gmail.com"
-                                    id="email"
-                                    name="email"
-                                    style={{ width: "100%", height: "40px" }}
-                                    required
-                                />
-                            </div>
-                            <label htmlFor="password">Password</label>
-                            <div style={{ position: "relative" }}>
-                                <input
-                                    value={pass}
-                                    onChange={(e) => setPass(e.target.value)}
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="********"
-                                    id="password"
-                                    name="password"
-                                    style={{ width: "100%", height: "40px" }}
-                                    required
-                                />
-                                <span
-                                    style={{
-                                        position: "absolute",
-                                        top: "50%",
-                                        right: "15px",
-                                        transform: "translateY(-50%)",
-                                        cursor: "pointer",
-                                        color: "black"
-                                    }}
-                                    onClick={toggleShowPassword}
-                                >
-                                    {showPassword ? <i className="fas fa-eye"></i> : <i className="fas fa-eye-slash"></i>}
-                                </span>
-                            </div>
-                            <p style={{ color: "white", fontSize: "12px" }}>Forgot password?</p>
-                            <button className="login-btn" type="submit">Log In</button>
-                        </form>
-                        <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={() => props.onFormSwitch('register')}>Don't have an account yet? Sign Up.</button>
-                    </div>
+
+                        <p style={{ color: "#293D76", fontSize: "12px" }}>Forgot password?</p>
+                        <button className="btn btn-light login-button" type="submit">Log In</button>
+                    </form>
+                    <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={() => props.onFormSwitch('register')}>Don't have an account yet? Sign Up.</button>
                 </div>
-            </div>
-        </div>
+            </div>    
+        </>
     );
 }
 
