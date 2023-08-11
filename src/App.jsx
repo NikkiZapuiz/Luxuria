@@ -1,35 +1,20 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MainNavbar from "./components/MainNavbar";
 import AdminDashboard from "./pages/AdminDashboard";
-import Nav from "./components/AdminNav";
 import Login from "./pages/Login";
-import Navbar from "./components/Navbar";
 import HomePage from "./pages/Homepage";
 
-
 function App() {
-
     return (
-        <BrowserRouter>
-            
+        <Router>
+            <MainNavbar />
             <Routes>
-                <Route path="/" element={
-                    <>
-                        <Navbar />
-                        <HomePage />
-                    </>
-                    
-
-                } />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/admin-dashboard" element={
-                <>
-                    <Nav />
-                    <AdminDashboard />
-                </>
-                } />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
             </Routes>
-        </BrowserRouter>    
+        </Router>
     );
 }
 

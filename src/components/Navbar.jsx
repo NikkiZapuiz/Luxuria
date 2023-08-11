@@ -13,6 +13,7 @@ function Navbar() {
             }}>
             <div className="container-fluid">
             <img src="/logo.png" alt="logo" style={{ width: "10%", minWidth: "200px" }} />
+            {/* <h4 style={{color: "#293D76", marginRight: "100px"}}>Hotels</h4> */}
                 <button
                     className="navbar-toggler btn btn-outline-light"
                     type="button"
@@ -53,12 +54,12 @@ function Navbar() {
                         </li>
                     </ul>
                     <form className="d-flex me-5" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-dark" type="submit">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"  style={{color: "#293D76"}} />
+                        <button className="btn" type="submit" style={{color: "#293D76"}}>
                             Search
                         </button>
                     </form>
-                    <Link to="/login" style={{ textDecoration: "none", color: "black", marginRight: "10px" }}>
+                    <Link to="/login" style={{ textDecoration: "none", color: "#293D76", marginRight: "20px" }}>
                         Log In
                     </Link>
                 </div>

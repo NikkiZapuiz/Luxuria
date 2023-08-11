@@ -1,36 +1,54 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-function RoomDisplay() {
+function RoomDisplay({ isLoggedIn }) {
+    const navigate = useNavigate();
+
+    const handleBookNow = () => {
+        if (isLoggedIn) {
+            alert("Room booked successfully!");
+        } else {
+            navigate("/login");
+        }
+    };
+
     return (
-        <>
-            <div id="carouselExampleIndicators" className="carousel slide">
-                <div className="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="/deluxe.jpg" className="d-block w-100 h-50" alt="..."/>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="/executive.jpg" className="d-block w-100 h-50" alt="..."/>
-                    </div>  
-                    <div className="carousel-item">
-                        <img src="/suite.jpg" className="d-block w-100 h-50" alt="..."/>
+        <div className="container mt-4">
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="card">
+                        <img src="/deluxe.jpg" className="card-img-top" alt="Room 1" />
+                        <div className="card-body">
+                            <h5 className="card-title" style={{color: "#293D76"}}>Standard Room</h5>
+                            <p className="card-text" style={{color: "#293D76"}}>Enjoy a comfortable stay in our standard room.</p>
+                            <button className="btn" style={{backgroundColor: "#293D76", color: "white"}} onClick={handleBookNow}>Book Now</button>
+                        </div>
                     </div>
                 </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
+                <div className="col-md-4">
+                    <div className="card">
+                        <img src="/executive.jpg" className="card-img-top" alt="Room 2" />
+                        <div className="card-body">
+                            <h5 className="card-title" style={{color: "#293D76"}}>Deluxe Room</h5>
+                            <p className="card-text" style={{color: "#293D76"}}>Experience luxury in our deluxe room with a stunning view.</p>
+                            <button className="btn" style={{backgroundColor: "#293D76", color: "white"}} onClick={handleBookNow}>Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="card">
+                        <img src="/suite.jpg" className="card-img-top" style={{height: "37vh"}} alt="Room 3" />
+                        <div className="card-body">
+                            <h5 className="card-title" style={{color: "#293D76"}}>Suite Room</h5>
+                            <p className="card-text" style={{color: "#293D76"}}>Indulge yourself in our spacious and elegant suite room.</p>
+                            <button className="btn" style={{backgroundColor: "#293D76", color: "white"}} onClick={handleBookNow}>Book Now</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export default RoomDisplay
+export default RoomDisplay;
