@@ -1,16 +1,36 @@
 import React, { useState } from "react";
 import Switch from "react-switch";
+import users from "./Users";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/authReducer";
+import { useNavigate } from "react-router-dom";
+import Modal from "./errorHandling";
+import { clearError, setError } from "../store/errorReducer";
 
 function LoginAsUser(props) {
     const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const [password, setPassword] = useState("");
     const [loginOption, setLoginOption] = useState("user");
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const loginError = useSelector((state) => state.error.error);
 
-    const handleSubmit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        console.log(email);
-        console.log("Login option:", loginOption);
+
+        const user = users.find((user) => user.email === email);
+
+        if (user && user.password === password) {
+            navigate("/");
+            dispatch(login(user));
+        } else {
+            dispatch(setError("Invalid email or password"));
+        }
+    };
+
+    const closeModal = () => {
+        dispatch(clearError());
     };
 
     const handleOptionChange = (checked) => {
@@ -20,6 +40,8 @@ function LoginAsUser(props) {
     const toggleShowPassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
+
+    const isModalOpen = loginError !== null;
 
     return (
         <>
@@ -54,7 +76,7 @@ function LoginAsUser(props) {
                         </span>
                     </div>
                     <br />
-                    <form className="login-form" onSubmit={handleSubmit}>
+                    <form className="login-form" onSubmit={handleLogin}>
                         <label style={{ color: "#293D76" }} htmlFor="email">Email</label>
                         <div>
                             <input
@@ -78,8 +100,8 @@ function LoginAsUser(props) {
                         <label style={{ color: "#293D76" }} htmlFor="password">Password</label>
                         <div style={{ position: "relative" }}>
                             <input
-                                value={pass}
-                                onChange={(e) => setPass(e.target.value)}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 type={showPassword ? "text" : "password"}
                                 placeholder="********"
                                 id="password"
@@ -114,7 +136,8 @@ function LoginAsUser(props) {
                     </form>
                     <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={() => props.onFormSwitch('register')}>Don't have an account yet? Sign Up.</button>
                 </div>
-            </div>    
+            </div>
+            <Modal isOpen={isModalOpen} onClose={closeModal} content={loginError} />
         </>
     );
 }

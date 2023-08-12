@@ -4,6 +4,7 @@ import '../css/DateAndPaxSelector.css'
 import RoomDisplay from "../components/RoomDisplay";
 
 function HomePage() {
+    
     return (
         <>
             <AmenitiesDisplay />

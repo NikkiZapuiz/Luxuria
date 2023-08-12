@@ -1,19 +1,30 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../store/authReducer";
+
 
 function Navbar() {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
 
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+    };
+
+
+    
 
     return (
-        <nav
-            className="navbar navbar-expand-lg bg-body-tertiary pt-4" style={{
-                borderBottomStyle: "ridge",
-                borderBottomWidth: "1px",
-                borderBottomColor: "#ccc"
-            }}>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary pt-4" style={{
+            borderBottomStyle: "ridge",
+            borderBottomWidth: "1px",
+            borderBottomColor: "#ccc"
+        }}>
             <div className="container-fluid">
-            <img src="/logo.png" alt="logo" style={{ width: "10%", minWidth: "200px" }} />
-            {/* <h4 style={{color: "#293D76", marginRight: "100px"}}>Hotels</h4> */}
+                <img src="/logo.png" alt="logo" style={{ width: "10%", minWidth: "200px" }} />
                 <button
                     className="navbar-toggler btn btn-outline-light"
                     type="button"
@@ -53,19 +64,28 @@ function Navbar() {
                             </ul>
                         </li>
                     </ul>
-                    <form className="d-flex me-5" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"  style={{color: "#293D76"}} />
-                        <button className="btn" type="submit" style={{color: "#293D76"}}>
+                    {/* <form className="d-flex me-5" role="search">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" style={{ color: "#293D76" }} />
+                        <button className="btn" type="submit" style={{ color: "#293D76" }}>
                             Search
                         </button>
-                    </form>
-                    <Link to="/login" style={{ textDecoration: "none", color: "#293D76", marginRight: "20px" }}>
-                        Log In
-                    </Link>
+                    </form> */}
+                    {isLoggedIn ? (
+                        <div className="d-flex align-items-center">
+                            <span className="me-3" style={{color: "#293D76"}}>Welcome, {user.fullName}</span>
+                            <Link to="/logout" onClick={handleLogout} style={{ textDecoration: "none", color: "#293D76" }}>
+                                Log Out
+                            </Link>
+                        </div>
+                    ) : (
+                        <Link to="/login" style={{ textDecoration: "none", color: "#293D76", marginRight: "20px" }}>
+                            Log In
+                        </Link>
+                    )}
                 </div>
             </div>
         </nav>
     );
-};
+}
 
 export default Navbar;

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-
+import users from "./Users";
+import Modal from "./errorHandling";
+import { clearError, setError } from "../store/errorReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 function Register(props) {
     const [fullName, setFullName] = useState("");
@@ -11,18 +12,33 @@ function Register(props) {
     const [birthDate, setBirthDate] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-
+    const loginError = useSelector((state) => state.error.error);
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Full Name:", fullName);
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Confirm Password:", confirmPassword);
-        console.log("Birth Date:", birthDate);
-        // Add your registration logic here
+    
+        if (password !== confirmPassword) {
+            dispatch(setError("Passwords do not match"));
+            return;
+        }
+    
+        const newUser = {
+            id: users.length + 1,
+            fullName,
+            email,
+            password,
+        };
+    
+        users.push(newUser); 
+    
+        // console.log("New user registered:", newUser);
+    
+        props.onFormSwitch('login');
+    };
 
+    const closeModal = () => {
+        dispatch(clearError());
     };
 
     const toggleShowPassword = () => {
@@ -33,10 +49,11 @@ function Register(props) {
         setShowConfirmPassword((prevShowConfirmPassword) => !prevShowConfirmPassword);
     };
 
+    const isModalOpen = loginError !== null;
 
     return (
         <>
-            <div className="shadow pb-4" style={{borderRadius: "2%"}}>
+            <div className="shadow pb-4" style={{ borderRadius: "2%" }}>
                 <img src="/logo.png" alt="logo" style={{ width: "50%", minWidth: "200px", marginTop: "5vh" }} />
                 <div className="register-container">
                     <div className="register-card pe-5 ps-5">
@@ -167,8 +184,9 @@ function Register(props) {
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isModalOpen} onClose={closeModal} content={loginError} />
         </>
-    );      
+    );
 }
 
 export default Register;
