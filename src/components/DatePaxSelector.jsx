@@ -6,8 +6,8 @@ import '../css/DateAndPaxSelector.css';
 const DateAndPaxSelector = () => {
     const [selectedRoomType, setSelectedRoomType] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
-    const [adultCount, setAdultCount] = useState(1); // Default to 1 adult
-    const [childCount, setChildCount] = useState(0); // Default to 0 children
+    const [adultCount, setAdultCount] = useState(1); 
+    const [childCount, setChildCount] = useState(0); 
 
     const handleRoomTypeChange = (event) => {
         setSelectedRoomType(event.target.value);

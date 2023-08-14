@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "./errorHandling";
 import { clearError, setError } from "../store/errorReducer";
 
-function LoginAsUser(props) {
+function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginOption, setLoginOption] = useState("user");
@@ -24,9 +24,11 @@ function LoginAsUser(props) {
         if (user && user.password === password) {
             navigate("/");
             dispatch(login(user));
+            closeLoginPopup();
         } else {
             dispatch(setError("Invalid email or password"));
         }
+
     };
 
     const closeModal = () => {
@@ -45,16 +47,35 @@ function LoginAsUser(props) {
 
     return (
         <>
-            <div className="d-flex justify-content-center pb-5" style={{
-                maxWidth: "1000px",
-                margin: "auto",
-                borderRadius: "10px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
-                border: "1px solid rgba(255, 255, 255, 0.2)"
-            }}>
-                <div className="auth-form-container" style={{ marginTop: "2vh" }}>
+
+            <div
+                className="modal d-flex justify-content-center shadow"
+                style={{
+                    margin: "auto",
+                    borderRadius: "10px",
+                    width: "90%", 
+                    maxWidth: "400px", 
+                    maxHeight: "80%",
+                    transform: "translate(-50%, -50%)",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    background: "white",
+                    zIndex: "3",
+                    padding: "20px", 
+                }}
+            >
+                <button className="btn" onClick={closeLoginPopup} style={{
+                    position: "absolute",
+                    top: "6%",
+                    right: "2%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                    color: "#293D76",
+                }}> <i className="fa-solid fa-x"></i></button>
+                <div className="auth-form-container d-flex flex-column align-items-center justify-content-center " style={{ marginTop: "2vh" }}>
                     <img src="/logo.png" alt="logo" style={{ width: "50%", minWidth: "200px", marginTop: "5vh" }} />
-                    <div className="toggle-container">
+                    <div className="toggle-container pt-2">
                         <label htmlFor="loginSwitch">
                             <Switch
                                 id="loginSwitch"
@@ -76,7 +97,7 @@ function LoginAsUser(props) {
                         </span>
                     </div>
                     <br />
-                    <form className="login-form" onSubmit={handleLogin}>
+                    <form className="login-form d-flex flex-column align-items-center" onSubmit={handleLogin}>
                         <label style={{ color: "#293D76" }} htmlFor="email">Email</label>
                         <div>
                             <input
@@ -87,7 +108,7 @@ function LoginAsUser(props) {
                                 id="email"
                                 name="email"
                                 style={{
-                                    width: "50%",
+                                    width: "100%",
                                     height: "40px",
                                     color: "#293D76",
                                     border: "1px solid #293D76",
@@ -107,7 +128,7 @@ function LoginAsUser(props) {
                                 id="password"
                                 name="password"
                                 style={{
-                                    width: "50%",
+                                    width: "100%",
                                     height: "40px",
                                     color: "#293D76",
                                     border: "1px solid #293D76",
@@ -120,7 +141,7 @@ function LoginAsUser(props) {
                                 style={{
                                     position: "absolute",
                                     top: "50%",
-                                    right: "27%",
+                                    right: "5%",
                                     transform: "translateY(-50%)",
                                     cursor: "pointer",
                                     color: "#293D76",
@@ -134,7 +155,7 @@ function LoginAsUser(props) {
                         <p style={{ color: "#293D76", fontSize: "12px" }}>Forgot password?</p>
                         <button className="btn btn-light login-button" type="submit">Log In</button>
                     </form>
-                    <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={() => props.onFormSwitch('register')}>Don't have an account yet? Sign Up.</button>
+                    <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={openRegisterPopup}>Don't have an account yet? Sign Up.</button>
                 </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal} content={loginError} />

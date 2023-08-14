@@ -2,7 +2,7 @@ import React from 'react';
 
 const Modal = ({ isOpen, onClose, content }) => {
     if (!isOpen) {
-        return null; // Don't render anything if the modal is closed
+        return null;
     }
 
     return (
@@ -18,7 +18,8 @@ const Modal = ({ isOpen, onClose, content }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                zIndex: 1000, 
+                zIndex: 4, 
+
             }}
         >
             <div

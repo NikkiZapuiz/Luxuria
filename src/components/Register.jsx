@@ -4,7 +4,7 @@ import Modal from "./errorHandling";
 import { clearError, setError } from "../store/errorReducer";
 import { useDispatch, useSelector } from "react-redux";
 
-function Register(props) {
+function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,13 +28,15 @@ function Register(props) {
             fullName,
             email,
             password,
+            birthDate,
         };
     
         users.push(newUser); 
     
-        // console.log("New user registered:", newUser);
-    
-        props.onFormSwitch('login');
+        openLoginPopup();
+        if (typeof onFormSwitch === 'function') {
+            onFormSwitch();
+        }
     };
 
     const closeModal = () => {
@@ -53,11 +55,32 @@ function Register(props) {
 
     return (
         <>
-            <div className="shadow pb-4" style={{ borderRadius: "2%" }}>
-                <img src="/logo.png" alt="logo" style={{ width: "50%", minWidth: "200px", marginTop: "5vh" }} />
+            <div className="shadow pb-4 modal-backdrop d-flex flex-column align-items-center" style={{
+                margin: "auto",
+                borderRadius: "10px",
+                width: "90%",
+                maxWidth: "500px",
+                maxHeight: "100%",
+                transform: "translate(-50%, -50%)",
+                position: "absolute",
+                top: "60%",
+                left: "50%",
+                background: "white",
+                overflow:" auto",
+                zIndex: "3",
+            }}>
+                <button className="btn" onClick={closeRegisterPopup} style={{
+                    position: "absolute",
+                    top: "6%",
+                    right: "2%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                    color: "#293D76",
+                }}> <i className="fa-solid fa-x"></i></button>
+                <img src="/logo.png" alt="logo" style={{ width: "50%", minWidth: "200px", marginTop: "4vh", height: "10vh" }} />
                 <div className="register-container">
-                    <div className="register-card pe-5 ps-5">
-                        <h5 className="register-title" style={{ color: "#293D76" }}>Create an Account</h5>
+                    <div className="register-card pe-5 ps-5 d-flex flex-column align-items-center">
+                        <h6 className="register-title pt-2" style={{ color: "#293D76" }}>Create an Account</h6>
                         <form className="register-form pe-5 ps-5" onSubmit={handleSubmit}>
                             <div className="input-group">
                                 <label className="register-label">Full Name</label>
@@ -120,7 +143,7 @@ function Register(props) {
                                         right: "15px",
                                         transform: "translateY(-50%)",
                                         cursor: "pointer",
-                                        color: "#293D76", // Should be color: "#293D76" to match your design
+                                        color: "#293D76",
                                     }}
                                     onClick={toggleShowPassword}
                                 >
@@ -152,7 +175,7 @@ function Register(props) {
                                         right: "15px",
                                         transform: "translateY(-50%)",
                                         cursor: "pointer",
-                                        color: "#293D76", // Should be color: "#293D76" to match your design
+                                        color: "#293D76", 
                                     }}
                                     onClick={toggleShowConfirmPassword}
                                 >
@@ -178,9 +201,9 @@ function Register(props) {
                                 />
                             </div>
                             <br />
-                            <button type="submit" className="btn btn-light register-button">Register</button>
                         </form>
-                        <button className="Link-btn" style={{ width: "100%", fontSize: "14px" }} onClick={() => props.onFormSwitch('login')}>Already have an account? Log In.</button>
+                        <button type="submit" className="btn btn-light register-button" onClick={handleSubmit}>Register</button>
+                        <button className="Link-btn" style={{ width: "100%", fontSize: "14px" }} onClick={openLoginPopup}>Already have an account? Log In.</button>
                     </div>
                 </div>
             </div>
