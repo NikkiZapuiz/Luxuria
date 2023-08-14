@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Modal from './errorHandling';
 import RoomModal from './BookModal';
+import { setError } from '../store/errorReducer';
 
 function RoomDisplay() {
-    const navigate = useNavigate();
-
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState(null);
+    const dispatch = useDispatch();
 
     const openModal = (room) => {
         setSelectedRoom(room);
@@ -23,7 +23,7 @@ function RoomDisplay() {
         if (isLoggedIn) {
             openModal(room);
         } else {
-            navigate("/login");
+            dispatch(setError("Please Login First!"));
         }
     };
 
@@ -31,19 +31,22 @@ function RoomDisplay() {
         {
             id: 1,
             name: "Standard Room",
-            description: "Enjoy a comfortable stay in our standard room.",
+            description: "Indulge in the lap of opulence with our Exquisite Deluxe Suite. Experience unparalleled luxury and comfort in an expansive living space adorned with lavish furnishings.",
+            amenities: ["Plush queen bed", "55-inch OLED TV", "Designer toiletries", "Rainfall shower"],
             image: "/deluxe.jpg",
         },
         {
             id: 2,
             name: "Deluxe Room",
-            description: "Experience luxury in our deluxe room with a stunning view.",
+            description: 'Unwind in our Elegance Superior Room, where every detail exudes sophistication. Immerse yourself in tasteful design and modern amenities.',
+            amenities: ["King bed with Egyptian cotton sheets", "65-inch 4K OLED TV", "Private minibar with premium drinks", "Spa-like bathroom with deep soaking tub"],
             image: "/executive.jpg",
         },
         {
             id: 3,
             name: "Suite Room",
-            description: "Indulge yourself in our spacious and elegant suite room.",
+            description: 'Experience the pinnacle of luxury in our Luxury Executive Suite, a haven of comfort and refinement. Enjoy expansive living and dining spaces, perfect for both relaxation and entertainment.',
+            amenities: ["Separate bedroom and living area with elegant decor", "Private terrace with panoramic city views", "In-room jacuzzi and personal butler service", "Gourmet kitchenette with top-tier appliances"],
             image: "/suite.jpg",
         },
     ];

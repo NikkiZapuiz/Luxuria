@@ -9,7 +9,7 @@ const Modal = ({ isOpen, onClose, content }) => {
         <div
             className="modal"
             style={{
-                position: 'fixed',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
@@ -18,7 +18,7 @@ const Modal = ({ isOpen, onClose, content }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                zIndex: 4, 
+                zIndex: 3, 
 
             }}
         >

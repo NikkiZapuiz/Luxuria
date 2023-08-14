@@ -6,6 +6,7 @@ import LoginAsUser from "./LoginAsUser";
 import Register from "./Register";
 import Profile from "./Profile";
 
+
 function MainNavbar() {
     const location = useLocation();
     const isAdminDashboard = location.pathname === "/admin-dashboard";
@@ -21,7 +22,7 @@ function MainNavbar() {
     const closeLoginPopup = () => {
         setShowLoginPopup(false);
     };
-    
+
 
     const openRegisterPopup = () => {
         setShowLoginPopup(false);
@@ -41,27 +42,31 @@ function MainNavbar() {
 
     return (
         <div>
-            {isAdminDashboard ? <AdminNav /> : <Navbar 
-                showLoginPopup={showLoginPopup} 
-                openLoginPopup={openLoginPopup}  
+            {isAdminDashboard ? <AdminNav /> : <Navbar
+                showLoginPopup={showLoginPopup}
+                openLoginPopup={openLoginPopup}
                 showProfile={showProfile}
                 openProfilePopup={openProfilePopup}
             />}
             {showLoginPopup && <LoginAsUser
-                closeLoginPopup={closeLoginPopup} 
-                showRegisterPopup={showRegisterPopup} 
+                closeLoginPopup={closeLoginPopup}
+                showRegisterPopup={showRegisterPopup}
                 openRegisterPopup={openRegisterPopup}
             />}
             {showRegisterPopup && <Register
-                closeRegisterPopup={closeRegisterPopup} 
-                showLoginPopup={showLoginPopup} 
-                openLoginPopup={openLoginPopup}  
+                closeRegisterPopup={closeRegisterPopup}
+                showLoginPopup={showLoginPopup}
+                openLoginPopup={openLoginPopup}
             />}
             {showProfile && <Profile
-                showProfile={showProfile} 
+                showProfile={showProfile}
                 openProfilePopup={openProfilePopup}
                 closeProfilePopup={closeProfilePopup}
             />}
+            {/* {showLoginPopup && <RoomDisplay
+                showLoginPopup={showLoginPopup}
+                openLoginPopup={openLoginPopup}
+            />} */}
         </div>
     );
 }
