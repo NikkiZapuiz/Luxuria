@@ -56,7 +56,7 @@ function RoomDisplay() {
             <div className="row">
                 {rooms.map((room) => (
                     <div className="col-md-4" key={room.id}>
-                        <div className="card">
+                        <div className="card" style={{height: "80vh"}}>
                             <img
                                 src={room.image}
                                 className="card-img-top"
