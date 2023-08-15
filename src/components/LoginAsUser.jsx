@@ -4,7 +4,7 @@ import users from "./Users";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/authReducer";
 import { useNavigate } from "react-router-dom";
-import Modal from "./errorHandling";
+import Toast from "./ErrorToast";
 import { clearError, setError } from "../store/errorReducer";
 
 function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
@@ -27,11 +27,13 @@ function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
             closeLoginPopup();
         } else {
             dispatch(setError("Invalid email or password"));
+            console.log("toast");
+            
         }
 
     };
 
-    const closeModal = () => {
+    const closeToast = () => {
         dispatch(clearError());
     };
 
@@ -43,7 +45,7 @@ function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
 
-    const isModalOpen = loginError !== null;
+    const isToastVisible = loginError !== null;
 
     return (
         <>
@@ -158,7 +160,7 @@ function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
                     <button className="Link-btn" style={{ width: "100%", fontSize: "14px", marginTop: "10px" }} onClick={openRegisterPopup}>Don't have an account yet? Sign Up.</button>
                 </div>
             </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} content={loginError} />
+            <Toast isVisible={isToastVisible} onClose={closeToast} content={loginError} />
         </>
     );
 }

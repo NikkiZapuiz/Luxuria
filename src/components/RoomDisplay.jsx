@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from './errorHandling';
 import RoomModal from './BookModal';
-import { setError } from '../store/errorReducer';
+import { setError, clearError } from '../store/errorReducer';
+import Toast from "./ErrorToast";
 
 function RoomDisplay() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState(null);
     const dispatch = useDispatch();
+    const loginError = useSelector((state) => state.error.error);
 
     const openModal = (room) => {
         setSelectedRoom(room);
@@ -18,6 +19,12 @@ function RoomDisplay() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    const closeToast = () => {
+        dispatch(clearError());
+    };
+
+    
 
     const handleBookNow = (room) => {
         if (isLoggedIn) {
@@ -51,41 +58,46 @@ function RoomDisplay() {
         },
     ];
 
+    const isToastVisible = loginError !== null;
+
     return (
-        <div className="container mt-4">
-            <div className="row">
-                {rooms.map((room) => (
-                    <div className="col-md-4" key={room.id}>
-                        <div className="card" style={{height: "80vh"}}>
-                            <img
-                                src={room.image}
-                                className="card-img-top"
-                                style={{ height: "40vh" }}
-                                alt={room.name}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title" style={{ color: "#293D76" }}>
-                                    {room.name}
-                                </h5>
-                                <p className="card-text" style={{ color: "#293D76" }}>
-                                    {room.description}
-                                </p>
-                                <button
-                                    className="btn"
-                                    style={{ backgroundColor: "#293D76", color: "white" }}
-                                    onClick={() => handleBookNow(room)}
-                                >
-                                    Book Now
-                                </button>
+        <>
+            <div className="container mt-4">
+                <div className="row">
+                    {rooms.map((room) => (
+                        <div className="col-md-4" key={room.id}>
+                            <div className="card shadow" style={{ height: "80vh" }}>
+                                <img
+                                    src={room.image}
+                                    className="card-img-top"
+                                    style={{ height: "40vh" }}
+                                    alt={room.name}
+                                />
+                                <div className="card-body">
+                                    <h5 className="card-title" style={{ color: "#293D76" }}>
+                                        {room.name}
+                                    </h5>
+                                    <p className="card-text" style={{ color: "#293D76" }}>
+                                        {room.description}
+                                    </p>
+                                    <button
+                                        className="btn"
+                                        style={{ backgroundColor: "#293D76", color: "white" }}
+                                        onClick={() => handleBookNow(room)}
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+                {selectedRoom && (
+                    <RoomModal isOpen={isModalOpen} onRequestClose={closeModal} room={selectedRoom} />
+                )}
             </div>
-            {selectedRoom && (
-                <RoomModal isOpen={isModalOpen} onRequestClose={closeModal} room={selectedRoom} />
-            )}
-        </div>
+            <Toast isVisible={isToastVisible} onClose={closeToast} content={loginError} />
+        </>
     );
 }
 

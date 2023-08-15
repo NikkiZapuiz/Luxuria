@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import users from "./Users";
-import Modal from "./errorHandling";
+import Toast from "./ErrorToast";
 import { clearError, setError } from "../store/errorReducer";
 import { useDispatch, useSelector } from "react-redux";
+
 
 function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
     const [fullName, setFullName] = useState("");
@@ -18,8 +19,28 @@ function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
     const handleSubmit = (e) => {
         e.preventDefault();
     
+        if (!fullName.trim()) {
+            dispatch(setError("Name is required!"));
+            return;
+        }
+        if (!email.trim()) {
+            dispatch(setError("Email is required!"));
+            return;
+        }
+        if (!password.trim()) {
+            dispatch(setError("Password is required!"));
+            return;
+        }
+        if (!confirmPassword.trim()) {
+            dispatch(setError("Please confirm password!"));
+            return;
+        }
         if (password !== confirmPassword) {
-            dispatch(setError("Passwords do not match"));
+            dispatch(setError("Passwords do not match!"));
+            return;
+        }
+        if (!birthDate) {
+            dispatch(setError("Birth Date is required!"));
             return;
         }
     
@@ -39,7 +60,7 @@ function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
         }
     };
 
-    const closeModal = () => {
+    const closeToast = () => {
         dispatch(clearError());
     };
 
@@ -51,7 +72,7 @@ function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
         setShowConfirmPassword((prevShowConfirmPassword) => !prevShowConfirmPassword);
     };
 
-    const isModalOpen = loginError !== null;
+    const isToastVisible = loginError !== null;
 
     return (
         <>
@@ -207,7 +228,7 @@ function Register({onFormSwitch, openLoginPopup, closeRegisterPopup}) {
                     </div>
                 </div>
             </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} content={loginError} />
+            <Toast isVisible={isToastVisible} onClose={closeToast} content={loginError} />
         </>
     );
 }

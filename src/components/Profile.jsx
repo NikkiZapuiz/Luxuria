@@ -21,6 +21,7 @@ function Profile({ closeProfilePopup }) {
     };
 
     const handleEditToggle = () => {
+        console.log(userData);
         setEditMode(!editMode);
     };
 

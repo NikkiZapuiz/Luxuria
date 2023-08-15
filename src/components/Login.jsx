@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import LoginAsUser from "../components/LoginAsUser";
-import Register from "../components/Register";
+import { useState } from "react";
+import LoginAsUser from "./LoginAsUser";
+import Register from "./Register";
 import '../css/Login.css'
 import { useSelector } from "react-redux";
 
@@ -18,9 +18,6 @@ function Login() {
                 {
                     currentForm === "login" ? <LoginAsUser onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
                 }
-                {registration.error && <p style={{ color: 'red' }}>Registration Error: {registration.error}</p>}
-                {registration.loading && <p>Loading...</p>}
-                {registration.success && <p>Registration successful!</p>}
             </div>
         </>
     )

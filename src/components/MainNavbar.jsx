@@ -63,10 +63,6 @@ function MainNavbar() {
                 openProfilePopup={openProfilePopup}
                 closeProfilePopup={closeProfilePopup}
             />}
-            {/* {showLoginPopup && <RoomDisplay
-                showLoginPopup={showLoginPopup}
-                openLoginPopup={openLoginPopup}
-            />} */}
         </div>
     );
 }
