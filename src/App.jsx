@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import HomePage from "./pages/Homepage";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import Bookings from "./components/Bookings";
+import Reservations from "./components/Reservations";
 
 function App() {
     return (
@@ -17,6 +19,8 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/admin-dashboard" element={<AdminDashboard />} />
+                    <Route path="/bookings/:id" element={<Bookings />} />
+                    <Route path="/reservations" element={<Reservations />} />
                 </Routes>
             </BrowserRouter>
         </Provider>

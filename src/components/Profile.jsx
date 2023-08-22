@@ -105,28 +105,6 @@ function Profile({ closeProfilePopup }) {
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="birthdate" className="form-label">
-                                Birthdate:
-                            </label>
-                            <div className="d-flex align-items-center">
-                                {editMode ? (
-                                    <input
-                                        type="date"
-                                        className="form-control"
-                                        id="birthdate"
-                                        value={userData.birthdate}
-                                        onChange={(e) => handleInputChange("birthdate", e.target.value)}
-                                        required
-                                    />
-                                ) : (
-                                    <p className="mb-0">{userData.birthdate}</p>
-                                )}
-                                <button className="btn btn-link btn-edit" onClick={handleEditToggle}>
-                                    {editMode ? <i className="fas fa-check"></i> : <i className="fas fa-pencil-alt"></i>}
-                                </button>
-                            </div>
-                        </div>
-                        <div className="mb-3">
                             <label htmlFor="password" className="form-label">
                                 Password:
                             </label>

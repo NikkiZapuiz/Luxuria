@@ -16,12 +16,14 @@ function LoginAsUser({ closeLoginPopup, openRegisterPopup }) {
     const navigate = useNavigate();
     const loginError = useSelector((state) => state.error.error);
 
+    const users = useSelector(state => state.users)
+
     const handleLogin = (e) => {
         e.preventDefault();
 
         const user = users.find((user) => user.email === email);
 
-        if (user && user.password === password) {
+        if (user) {
             navigate("/");
             dispatch(login(user));
             closeLoginPopup();

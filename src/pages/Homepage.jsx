@@ -49,6 +49,7 @@ function HomePage() {
                             </p>
                         </div>
                     </div>
+                    <hr />
                     <div className="row align-items-center" style={{ color: "#132b6d" }}>
                         <div className="col-md-5 mt-5">
                             <h5 className="mb-5 text-center"> Dive into Luxury at Luxuria's Breathtaking Poolside Oasis</h5>
@@ -69,6 +70,7 @@ function HomePage() {
                             <img src="/amenities2.jpg" className="img-fluid rounded" alt="bar" />
                         </div>
                     </div>
+                    <hr />
                     <div className="row align-items-center" style={{ color: "#132b6d" }}>
                         <div className="col-md-7 mb-4 mb-md-0">
                             <img src="/amenities3.jpg" className="img-fluid rounded" alt="bar" />
@@ -89,6 +91,7 @@ function HomePage() {
                             </p>
                         </div>
                     </div>
+                    <hr />
                     <div className="row align-items-center" style={{ color: "#132b6d" }}>
                         <div className="col-md-5 mt-5">
                             <h5 className="mb-5 text-center"> Indulge in Culinary Excellence at Luxuria's Exquisite Restaurant</h5>
@@ -109,6 +112,7 @@ function HomePage() {
                             <img src="/amenities4.jpg" className="img-fluid rounded" alt="bar" />
                         </div>
                     </div>
+                    <hr />
                     <div className="row align-items-center" style={{ color: "#132b6d" }}>
                         <div className="col-md-7 mb-4 mb-md-0">
                             <img src="/amenities5.jpg" className="img-fluid rounded" alt="bar" />
