@@ -38,6 +38,9 @@ function RoomDisplay() {
                                     {room.type}
                                 </h5>
                                 <p className="card-text" style={{ color: "#293D76" }}>
+                                    {room.price}
+                                </p>
+                                <p className="card-text" style={{ color: "#293D76" }}>
                                     {room.description}
                                 </p>
                                 <button

@@ -11,8 +11,8 @@ function Reservations() {
             <div className="p-5">
                 <div className="d-flex justify-content-center">
                     <form className="d-flex mb-5" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <input className="form-control me-2" type="search" placeholder="Search" style={{color:"#132b6d"}} aria-label="Search" />
+                        <button className="btn" style={{backgroundColor:"#132b6d", color:"white"}} type="submit">Search</button>
                     </form>
                 </div>
                 <div className="text-center pb-5">

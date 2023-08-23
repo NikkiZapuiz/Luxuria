@@ -42,6 +42,7 @@ function Navbar({ openLoginPopup, openProfilePopup }) {
             setRoomInfo([
                 {
                     id: 1,
+                    price: "₱5,000",
                     type: "Standard Room",
                     description: "Indulge in the lap of opulence with our Exquisite Deluxe Suite. Experience unparalleled luxury and comfort in an expansive living space adorned with lavish furnishings.",
                     amenities: ["Plush queen bed", "55-inch OLED TV", "Designer toiletries", "Rainfall shower"],
@@ -49,6 +50,7 @@ function Navbar({ openLoginPopup, openProfilePopup }) {
                 },
                 {
                     id: 2,
+                    price: "₱10,000",
                     type: "Deluxe Room",
                     description: 'Unwind in our Elegance Superior Room, where every detail exudes sophistication. Immerse yourself in tasteful design and modern amenities.',
                     amenities: ["King bed with Egyptian cotton sheets", "65-inch 4K OLED TV", "Private minibar with premium drinks", "Spa-like bathroom with deep soaking tub"],
@@ -56,6 +58,7 @@ function Navbar({ openLoginPopup, openProfilePopup }) {
                 },
                 {
                     id: 3,
+                    price: "₱15,000",
                     type: "Suite Room",
                     description: 'Experience the pinnacle of luxury in our Luxury Executive Suite, a haven of comfort and refinement. Enjoy expansive living and dining spaces, perfect for both relaxation and entertainment.',
                     amenities: ["Separate bedroom and living area with elegant decor", "Private terrace with panoramic city views", "In-room jacuzzi and personal butler service", "Gourmet kitchenette with top-tier appliances"],
